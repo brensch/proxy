@@ -1,0 +1,17 @@
+steps:
+  # HTTP triggers
+  - name: "gcr.io/cloud-builders/gcloud"
+    args:
+      - functions
+      - deploy
+      - proxyrequest
+      - --entry-point=HandleProxyRequest
+      - --gen2
+      - --runtime=$_RUNTIME
+      - --region=us-west1
+      - --source=.
+      - --trigger-http
+      - --timeout=3600
+
+substitutions:
+  _RUNTIME: go116
