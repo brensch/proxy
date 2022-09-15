@@ -1,4 +1,4 @@
-package proxy_test
+package proxy
 
 import (
 	"bytes"
@@ -8,8 +8,6 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
-
-	"github.com/brensch/proxy"
 )
 
 func TestHandleProxyRequest(t *testing.T) {
@@ -17,7 +15,7 @@ func TestHandleProxyRequest(t *testing.T) {
 	endpoint := fmt.Sprintf("%s/api/search/campsites?start=0&size=1000&fq=asset_id%%3A%s&include_non_site_specific_campsites=true", "https://www.recreation.gov", "232450")
 	req := httptest.NewRequest(http.MethodGet, endpoint, nil)
 	w := httptest.NewRecorder()
-	proxy.HandleProxyRequest(w, req)
+	HandleProxyRequest(w, req)
 
 	res := w.Result()
 	defer res.Body.Close()
@@ -56,7 +54,7 @@ func TestProxyRequest(t *testing.T) {
 	// fire the proxy request to the testserver to check headers
 	req := httptest.NewRequest(http.MethodGet, ts.URL, nil)
 	w := httptest.NewRecorder()
-	proxy.HandleProxyRequest(w, req)
+	HandleProxyRequest(w, req)
 
 	res := w.Result()
 

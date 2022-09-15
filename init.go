@@ -6,6 +6,9 @@ import (
 	"github.com/elazarl/goproxy"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+
+	// required for cloud build
+	_ "github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
 )
 
 var (
