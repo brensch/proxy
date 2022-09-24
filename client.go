@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"net/url"
 	"time"
+
+	"go.uber.org/zap"
 )
 
 var (
@@ -31,12 +33,18 @@ func InitClient(projectID string) (*Client, error) {
 
 }
 
-func (c *Client) Do(req *http.Request) (*http.Response, error) {
+func (c *Client) Do(req *http.Request, log *zap.Logger) (*http.Response, error) {
 
-	proxyString := c.uris[rand.Intn(len(c.uris))]
-	proxyUrl, _ := url.Parse(proxyString)
+	proxy := c.uris[rand.Intn(len(c.uris))]
+	userAgent := RandomUserAgent()
+	log.Debug("doing proxy request",
+		zap.String("proxy", proxy),
+		zap.String("user_agent", userAgent),
+	)
 
-	req.Header.Set("User-Agent", RandomUserAgent())
+	proxyUrl, _ := url.Parse(proxy)
+
+	req.Header.Set("User-Agent", userAgent)
 	var netTransport = &http.Transport{
 		Dial: (&net.Dialer{
 			Timeout: timeout,
