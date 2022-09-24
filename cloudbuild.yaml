@@ -13,12 +13,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=us-central1
       - --source=.
@@ -26,12 +26,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=us-east1
       - --source=.
@@ -39,12 +39,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=us-east4
       - --source=.
@@ -52,12 +52,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=europe-west1
       - --source=.
@@ -65,12 +65,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=europe-west2
       - --source=.
@@ -78,12 +78,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=asia-east1
       - --source=.
@@ -91,12 +91,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=asia-east2
       - --source=.
@@ -104,12 +104,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=asia-northeast1
       - --source=.
@@ -117,12 +117,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=asia-northeast2
       - --source=.
@@ -130,12 +130,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=us-west2
       - --source=.
@@ -143,12 +143,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=us-west3
       - --source=.
@@ -156,12 +156,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=us-west4
       - --source=.
@@ -169,12 +169,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=northamerica-northeast1
       - --source=.
@@ -182,12 +182,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=southamerica-east1
       - --source=.
@@ -195,12 +195,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=europe-west3
       - --source=.
@@ -208,12 +208,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=europe-west6
       - --source=.
@@ -221,12 +221,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=europe-central2
       - --source=.
@@ -234,12 +234,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=australia-southeast1
       - --source=.
@@ -247,12 +247,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=asia-south1
       - --source=.
@@ -260,12 +260,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=asia-southeast1
       - --source=.
@@ -273,12 +273,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=asia-southeast2
       - --source=.
@@ -286,12 +286,12 @@ steps:
       - --timeout=540
       - --memory=128
   - name: "gcr.io/cloud-builders/gcloud"
+    waitFor: ["-"]
     args:
       - functions
       - deploy
       - proxyrequest
       - --entry-point=HandleProxy
-      - --gen2
       - --runtime=$_RUNTIME
       - --region=asia-northeast3
       - --source=.
