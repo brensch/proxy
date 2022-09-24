@@ -11,7 +11,7 @@ steps:
       - --source=.
       - --trigger-http
       - --timeout=540
-      - --memory=64
+      - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -24,7 +24,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -37,7 +37,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -50,7 +50,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -63,7 +63,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -76,7 +76,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -89,7 +89,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -102,7 +102,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -115,7 +115,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -128,7 +128,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -141,7 +141,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -154,7 +154,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -167,7 +167,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -180,7 +180,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -193,7 +193,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -206,7 +206,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -219,7 +219,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -232,7 +232,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -245,7 +245,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -258,7 +258,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -271,7 +271,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -284,7 +284,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
   # - name: "gcr.io/cloud-builders/gcloud"
   #   args:
   #     - functions
@@ -297,7 +297,7 @@ steps:
   #     - --source=.
   #     - --trigger-http
   #     - --timeout=540
-  #     - --memory=64
+  #     - --memory=128
 
 substitutions:
   _RUNTIME: go116
