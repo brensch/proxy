@@ -7,7 +7,7 @@ import (
 	"go.uber.org/zap"
 )
 
-// HandleProxyRequest doesn't need to do anything fancy, just some logging
+// HandleProxy doesn't need to do anything fancy, just some logging
 // and the main HandlerFunc of the proxy package
 func HandleProxy(w http.ResponseWriter, r *http.Request) {
 	log := log.With(

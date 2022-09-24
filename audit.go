@@ -12,7 +12,7 @@ import (
 
 var (
 	// this is the name of the handlerfunc given to the entrypoint of the cloud build
-	HandlerName = "HandleProxyRequest"
+	HandlerName = "HandleProxy"
 )
 
 // AuditProxies retrieves all proxies available in the current project.
