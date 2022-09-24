@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", proxy.HandleProxyRequest)
+	http.HandleFunc("/", proxy.HandleProxy)
 
 	log.Fatal(http.ListenAndServe(":8000", nil))
 }

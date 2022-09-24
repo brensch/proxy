@@ -21,12 +21,14 @@ func init() {
 	// init logger
 	logConfig := zap.NewProductionConfig()
 	logConfig.Level.SetLevel(zap.DebugLevel)
+
 	// this ensures google logs pick things up properly
 	logConfig.EncoderConfig.MessageKey = "message"
 	logConfig.EncoderConfig.LevelKey = "severity"
 	logConfig.EncoderConfig.TimeKey = "time"
 	logConfig.EncoderConfig.EncodeTime = zapcore.RFC3339TimeEncoder
 	logConfig.EncoderConfig.EncodeDuration = zapcore.MillisDurationEncoder
+
 	var err error
 	log, err = logConfig.Build()
 	if err != nil {

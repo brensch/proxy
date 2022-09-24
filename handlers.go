@@ -9,7 +9,7 @@ import (
 
 // HandleProxyRequest doesn't need to do anything fancy, just some logging
 // and the main HandlerFunc of the proxy package
-func HandleProxyRequest(w http.ResponseWriter, r *http.Request) {
+func HandleProxy(w http.ResponseWriter, r *http.Request) {
 	log := log.With(
 		zap.String("dst", r.URL.String()),
 		zap.String("method", r.Method),
