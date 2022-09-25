@@ -2,302 +2,253 @@ steps:
   # HTTP triggers
   - name: "gcr.io/cloud-builders/gcloud"
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=us-west1
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=us-central1
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=us-east1
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=us-east4
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=europe-west1
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=europe-west2
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=asia-east1
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=asia-east2
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=asia-northeast1
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=asia-northeast2
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=us-west2
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=us-west3
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=us-west4
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=northamerica-northeast1
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=southamerica-east1
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=europe-west3
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=europe-west6
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=europe-central2
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=australia-southeast1
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=asia-south1
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=asia-southeast1
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=asia-southeast2
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
+      - --memory=128Mi
   - name: "gcr.io/cloud-builders/gcloud"
     waitFor: ["-"]
     args:
-      - functions
+      - run
       - deploy
       - proxyrequest
-      - --entry-point=HandleProxy
-      - --runtime=$_RUNTIME
+      - --no-allow-unauthenticated
       - --region=asia-northeast3
       - --source=.
-      - --trigger-http
       - --timeout=540
-      - --memory=128
-
-substitutions:
-  _RUNTIME: go116
+      - --memory=128Mi

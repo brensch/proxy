@@ -1,4 +1,4 @@
-package proxy
+package main
 
 import "math/rand"
 
