@@ -78,12 +78,13 @@ func GetAccessToken() (*oauth2.Token, error) {
 
 }
 
-func (c *Client) Do(req *http.Request, log *zap.Logger) (*http.Response, error) {
+func (c *Client) Do(req *http.Request, olog *zap.Logger) (*http.Response, error) {
+
+	start := time.Now()
 
 	proxy := c.uris[rand.Intn(len(c.uris))]
-	log.Debug("doing proxy request",
-		zap.String("proxy", proxy),
-	)
+	log := olog.With(zap.String("proxy", proxy))
+	log.Debug("started proxy request")
 
 	proxyUrl, _ := url.Parse(proxy)
 
@@ -121,8 +122,14 @@ func (c *Client) Do(req *http.Request, log *zap.Logger) (*http.Response, error) 
 	}
 	req.URL = url
 
-	return c.c.Do(req)
+	res, err := c.c.Do(req)
+	if err != nil {
+		return nil, err
+	}
 
+	log.Debug("finished proxy request", zap.Duration("execution_time_ms", time.Since(start)))
+
+	return res, nil
 }
 
 func IDTokenTokenSource(ctx context.Context, audience string) (oauth2.TokenSource, error) {
