@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -39,6 +40,8 @@ func Director(log *zap.Logger) func(req *http.Request) {
 		// the url is updated to be the value retrieved from the header in the request
 		req.URL = targetURL
 		req.Host = targetURL.Host
+
+		fmt.Println(req.Header.Get("Authorization"))
 
 		// reset all headers for maximum incognito
 		req.Header.Del("X-Forwarded-For")

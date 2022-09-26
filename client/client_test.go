@@ -1,6 +1,7 @@
 package client
 
 import (
+	"context"
 	"io/ioutil"
 	"net/http"
 	"testing"
@@ -9,7 +10,7 @@ import (
 )
 
 func TestUseClient(t *testing.T) {
-	c, err := InitClient("763810810662")
+	c, err := InitClient("campr-app")
 	if err != nil {
 		t.Error("failed to init client", err)
 		return
@@ -25,11 +26,6 @@ func TestUseClient(t *testing.T) {
 		return
 	}
 
-	if c == nil {
-		t.Error("what")
-		return
-	}
-
 	res, err := c.Do(req, log)
 	if err != nil {
 		t.Error("failed to do request", err)
@@ -40,6 +36,27 @@ func TestUseClient(t *testing.T) {
 
 	body, _ := ioutil.ReadAll(res.Body)
 	t.Log(len(body))
-
 	t.Log(res.Status)
+
+	if res.StatusCode != http.StatusOK {
+		t.Error("got bad status code", res.StatusCode)
+	}
+}
+
+func TestTokenSource(t *testing.T) {
+
+	source, err := IDTokenTokenSource(context.Background(), "http://cool.com")
+	if err != nil {
+		t.Error("bad token", err)
+		return
+	}
+
+	token, err := source.Token()
+	if err != nil {
+		t.Error("failed to get token", err)
+		return
+	}
+
+	t.Log(token.AccessToken)
+
 }

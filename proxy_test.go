@@ -2,8 +2,6 @@ package main
 
 import (
 	"bytes"
-	"context"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
@@ -12,9 +10,6 @@ import (
 	"time"
 
 	"go.uber.org/zap"
-	"golang.org/x/oauth2"
-	"golang.org/x/oauth2/google"
-	"google.golang.org/api/idtoken"
 )
 
 var (
@@ -133,45 +128,4 @@ func TestProxyRequest(t *testing.T) {
 		t.Error("got different payload than was sent by test server")
 	}
 
-}
-
-func IDTokenTokenSource(ctx context.Context, audience string) (oauth2.TokenSource, error) {
-	// First we try the idtoken package, which only works for service accounts
-	ts, err := idtoken.NewTokenSource(ctx, audience)
-	if err != nil {
-		if err.Error() != `idtoken: credential must be service_account, found "authorized_user"` {
-			return nil, err
-		}
-		// If that fails, we use our Application Default Credentials to fetch an id_token on the fly
-		gts, err := google.DefaultTokenSource(ctx)
-		if err != nil {
-			return nil, err
-		}
-		ts = oauth2.ReuseTokenSource(nil, &idTokenSource{TokenSource: gts})
-	}
-	return ts, nil
-}
-
-// idTokenSource is an oauth2.TokenSource that wraps another
-// It takes the id_token from TokenSource and passes that on as a bearer token
-type idTokenSource struct {
-	TokenSource oauth2.TokenSource
-}
-
-func (s *idTokenSource) Token() (*oauth2.Token, error) {
-	token, err := s.TokenSource.Token()
-	if err != nil {
-		return nil, err
-	}
-
-	idToken, ok := token.Extra("id_token").(string)
-	if !ok {
-		return nil, fmt.Errorf("token did not contain an id_token")
-	}
-
-	return &oauth2.Token{
-		AccessToken: idToken,
-		TokenType:   "Bearer",
-		Expiry:      token.Expiry,
-	}, nil
 }
