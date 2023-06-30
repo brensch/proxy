@@ -35,7 +35,7 @@ func TestUseClient(t *testing.T) {
 	defer res.Body.Close()
 
 	body, _ := ioutil.ReadAll(res.Body)
-	// t.Log(string(body))
+	t.Log(string(body))
 	_ = body
 	t.Log(res.Status)
 

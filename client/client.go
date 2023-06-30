@@ -6,7 +6,6 @@ import (
 	"math/rand"
 	"net"
 	"net/http"
-	"net/http/httputil"
 	"net/url"
 	"sync"
 	"time"
@@ -128,13 +127,6 @@ func (c *Client) Do(req *http.Request, olog *zap.Logger) (*http.Response, error)
 		RawQuery: req.URL.RawQuery,
 	}
 	req.URL = url
-
-	reqdump, err := httputil.DumpRequest(req, true)
-	if err != nil {
-		return nil, err
-	}
-	fmt.Println(string(reqdump))
-	fmt.Println("url", req.URL.String())
 
 	res, err := c.c.Do(req)
 	if err != nil {

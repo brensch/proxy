@@ -45,9 +45,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	newRequest.Header.Del("Authorization")
 	newRequest.Header.Set("User-Agent", RandomUserAgent())
 
-	// Dump all headers
-	dumpHeaders(newRequest)
-
 	resp, err := http.DefaultTransport.RoundTrip(newRequest)
 	if err != nil {
 		http.Error(w, "Failed to send request", http.StatusInternalServerError)
@@ -66,14 +63,6 @@ func copyHeaders(dst, src http.Header) {
 	for k, vv := range src {
 		for _, v := range vv {
 			dst.Add(k, v)
-		}
-	}
-}
-
-func dumpHeaders(r *http.Request) {
-	for name, headers := range r.Header {
-		for _, h := range headers {
-			log.Printf("%v: %v\n", name, h)
 		}
 	}
 }
