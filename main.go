@@ -33,7 +33,7 @@ func main() {
 		panic(err)
 	}
 
-	proxy := InitProxy(log)
+	http.HandleFunc("/", handler)
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -42,6 +42,6 @@ func main() {
 
 	log.Info("starting", zap.String("port", port))
 	log.Error("got error serving",
-		zap.Error(http.ListenAndServe(fmt.Sprintf(":%s", port), proxy)),
+		zap.Error(http.ListenAndServe(fmt.Sprintf(":%s", port), nil)),
 	)
 }

@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"net"
 	"net/http"
+	"net/http/httputil"
 	"net/url"
 	"sync"
 	"time"
@@ -89,7 +90,11 @@ func (c *Client) Do(req *http.Request, olog *zap.Logger) (*http.Response, error)
 	proxyUrl, _ := url.Parse(proxy)
 
 	// set the header to be the desired target that was the original url of the request
-	req.Header.Set("X-Target", req.URL.String())
+	targetUrlBase := &url.URL{
+		Host:   req.URL.Host,
+		Scheme: req.URL.Scheme,
+	}
+	req.Header.Set("X-Target", targetUrlBase.String())
 
 	// get auth token
 	var newExpiry time.Time
@@ -121,6 +126,12 @@ func (c *Client) Do(req *http.Request, olog *zap.Logger) (*http.Response, error)
 		Scheme: proxyUrl.Scheme,
 	}
 	req.URL = url
+
+	reqdump, err := httputil.DumpRequest(req, true)
+	if err != nil {
+		return nil, err
+	}
+	fmt.Println(string(reqdump))
 
 	res, err := c.c.Do(req)
 	if err != nil {

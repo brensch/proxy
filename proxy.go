@@ -1,50 +1,79 @@
 package main
 
 import (
+	"io"
+	"log"
 	"net/http"
-	"net/http/httputil"
 	"net/url"
-
-	"go.uber.org/zap"
+	"strings"
 )
 
 const (
 	TargetHeader = "X-Target"
 )
 
-func InitProxy(log *zap.Logger) *httputil.ReverseProxy {
-	return &httputil.ReverseProxy{
-		Director: Director(log),
+func handler(w http.ResponseWriter, r *http.Request) {
+	target := r.Header.Get(TargetHeader)
+	if target == "" {
+		http.Error(w, "X-Target header is missing", http.StatusBadRequest)
+		return
+	}
+
+	// Create new URL
+	targetURL, err := url.Parse(target)
+	if err != nil {
+		http.Error(w, "Invalid X-Target header", http.StatusBadRequest)
+		return
+	}
+
+	// Create new request
+	newRequest := r.Clone(r.Context())
+	newRequest.URL.Scheme = targetURL.Scheme
+	newRequest.URL.Host = targetURL.Host
+
+	// Calculate the Host header value
+	host := targetURL.Host
+	if idx := strings.Index(host, ":"); idx != -1 {
+		host = host[:idx]
+	}
+
+	// Set the Host header
+	newRequest.Host = host
+
+	// use a randomised useragent
+	newRequest.Header.Del(TargetHeader)
+	newRequest.Header.Del("Authorization")
+	newRequest.Header.Set("User-Agent", RandomUserAgent())
+
+	// Dump all headers
+	dumpHeaders(newRequest)
+
+	resp, err := http.DefaultTransport.RoundTrip(newRequest)
+	if err != nil {
+		http.Error(w, "Failed to send request", http.StatusInternalServerError)
+		log.Println(err)
+		return
+	}
+	defer resp.Body.Close()
+
+	// Copy headers and body
+	copyHeaders(w.Header(), resp.Header)
+	w.WriteHeader(resp.StatusCode)
+	io.Copy(w, resp.Body)
+}
+
+func copyHeaders(dst, src http.Header) {
+	for k, vv := range src {
+		for _, v := range vv {
+			dst.Add(k, v)
+		}
 	}
 }
 
-func Director(log *zap.Logger) func(req *http.Request) {
-	return func(req *http.Request) {
-		userAgent := RandomUserAgent()
-
-		// the desired destination is read from this header
-		target := req.Header.Get(TargetHeader)
-
-		log.Debug("proxy request received",
-			zap.String("user_agent", userAgent),
-			zap.String("target", target),
-		)
-
-		targetURL, err := url.Parse(target)
-		if err != nil {
-			log.Error("failed to parse url in X-Target", zap.Error(err))
-			return
+func dumpHeaders(r *http.Request) {
+	for name, headers := range r.Header {
+		for _, h := range headers {
+			log.Printf("%v: %v\n", name, h)
 		}
-
-		// the url is updated to be the value retrieved from the header in the request
-		req.URL = targetURL
-		req.Host = targetURL.Host
-
-		// reset all headers for maximum incognito
-		req.Header.Del("X-Forwarded-For")
-		req.Header.Del(TargetHeader)
-
-		// use a randomised useragent
-		req.Header.Set("User-Agent", userAgent)
 	}
 }

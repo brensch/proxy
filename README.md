@@ -32,3 +32,18 @@ from https://cloud.google.com/functions/docs/locations
 - asia-southeast1 (Singapore)
 - asia-southeast2 (Jakarta)
 - asia-northeast3 (Seoul)
+
+
+```
+gcloud projects describe proxy-362608 --format='value(projectNumber)'
+
+gcloud projects add-iam-policy-binding proxy-362608 \
+  --member=serviceAccount:668769694702@cloudbuild.gserviceaccount.com \
+  --role=roles/run.admin
+
+gcloud projects add-iam-policy-binding proxy-362608 \
+  --member=serviceAccount:668769694702@cloudbuild.gserviceaccount.com \
+  --role=roles/iam.serviceAccountUser
+
+gcloud builds submit --config cloudbuild.yaml --substitutions=_IMAGE_NAME=proxy,_PROJECT_ID=proxy-362608
+```
