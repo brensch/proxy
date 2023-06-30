@@ -10,7 +10,7 @@ import (
 )
 
 func TestUseClient(t *testing.T) {
-	c, err := InitClient("campr-app")
+	c, err := InitClient("proxy-362608")
 	if err != nil {
 		t.Error("failed to init client", err)
 		return
@@ -35,7 +35,8 @@ func TestUseClient(t *testing.T) {
 	defer res.Body.Close()
 
 	body, _ := ioutil.ReadAll(res.Body)
-	t.Log(len(body))
+	// t.Log(string(body))
+	_ = body
 	t.Log(res.Status)
 
 	if res.StatusCode != http.StatusOK {

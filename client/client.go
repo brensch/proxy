@@ -122,8 +122,10 @@ func (c *Client) Do(req *http.Request, olog *zap.Logger) (*http.Response, error)
 	// reset the url for the call to only be the host and scheme
 	// (path and query are all captured in the header)
 	url := &url.URL{
-		Host:   proxyUrl.Host,
-		Scheme: proxyUrl.Scheme,
+		Host:     proxyUrl.Host,
+		Scheme:   proxyUrl.Scheme,
+		Path:     req.URL.Path,
+		RawQuery: req.URL.RawQuery,
 	}
 	req.URL = url
 
@@ -132,6 +134,7 @@ func (c *Client) Do(req *http.Request, olog *zap.Logger) (*http.Response, error)
 		return nil, err
 	}
 	fmt.Println(string(reqdump))
+	fmt.Println("url", req.URL.String())
 
 	res, err := c.c.Do(req)
 	if err != nil {
