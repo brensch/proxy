@@ -28,7 +28,7 @@ type Client struct {
 	c *http.Client
 
 	tokenMu sync.Mutex
-	token   *oauth2.Token
+	tokens  map[string]*oauth2.Token
 }
 
 // InitClient looks for all the available proxies, and initialises the auth to use them.
@@ -51,25 +51,28 @@ func InitClient(projectID string) (*Client, error) {
 		Timeout:   timeout,
 	}
 
-	token, err := GetAccessToken()
-	if err != nil {
-		return nil, err
+	tokens := make(map[string]*oauth2.Token, len(uris))
+	for _, uri := range uris {
+
+		token, err := GetAccessToken(uri)
+		if err != nil {
+			return nil, err
+		}
+		tokens[uri] = token
 	}
 
 	client := &Client{
-		uris:  uris,
-		c:     netClient,
-		token: token,
+		uris:   uris,
+		c:      netClient,
+		tokens: tokens,
 	}
 
 	return client, nil
 
 }
 
-func GetAccessToken() (*oauth2.Token, error) {
-	// NB it seemed like i would need to be specific about the audience,
-	// but testing shows any audience will work for auth to our services.
-	source, err := IDTokenTokenSource(context.Background(), "a.run.app")
+func GetAccessToken(aud string) (*oauth2.Token, error) {
+	source, err := IDTokenTokenSource(context.Background(), aud)
 	if err != nil {
 		return nil, err
 	}
@@ -99,17 +102,18 @@ func (c *Client) Do(req *http.Request, olog *zap.Logger) (*http.Response, error)
 	var newExpiry time.Time
 	c.tokenMu.Lock()
 	// check if we're valid while we're locked, revalidate if not
-	if !c.token.Valid() {
-		token, err := GetAccessToken()
+	token := c.tokens[proxy]
+	if !token.Valid() {
+		token, err := GetAccessToken(proxy)
 		if err != nil {
 			return nil, err
 		}
-		c.token = token
+		c.tokens[proxy] = token
 
 		// record time instead of log here to minimise time with held mutex
 		newExpiry = token.Expiry
 	}
-	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.token.AccessToken))
+	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", token.AccessToken))
 	c.tokenMu.Unlock()
 
 	if !newExpiry.IsZero() {
