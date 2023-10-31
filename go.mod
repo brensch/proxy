@@ -4,7 +4,6 @@ go 1.18
 
 require (
 	github.com/GoogleCloudPlatform/functions-framework-go v1.6.1
-	github.com/elazarl/goproxy v0.0.0-20220901064549-fbd10ff4f5a1
 	go.uber.org/zap v1.23.0
 	golang.org/x/oauth2 v0.0.0-20220909003341-f21342109be1
 	google.golang.org/api v0.97.0
